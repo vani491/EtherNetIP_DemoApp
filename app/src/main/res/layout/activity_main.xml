@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="16dp"
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="IP appears here"
-        android:textSize="22sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="#212121"
         android:gravity="center"
         android:background="@android:color/darker_gray"
-        android:padding="16dp"
+        android:padding="10dp"
         android:elevation="4dp"
         android:layout_marginBottom="16dp" />
 
@@ -53,10 +53,12 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#333"
+        android:visibility="gone"
         android:layout_marginBottom="8dp" />
 
     <!-- EditText + Set Button in one row -->
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -78,16 +80,58 @@
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Input Assembly: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+      <TextView
+          android:id="@+id/tvInputAssemblySensorData"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textStyle="bold"
+          android:layout_marginTop="5dp"
+          android:textColor="#989898"
+
+          />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Output Assembly: "
+        android:textSize="18sp"
+        android:textColor="#555353"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/dataListener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="15sp"
+        android:textColor="#989898"
+        android:textStyle="bold"
+        />
+
     <!-- Result Text -->
     <TextView
         android:id="@+id/txtResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Device details will appears here"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textColor="#333"
         android:background="#F5F5F5"
-        android:padding="16dp"
+        android:padding="10dp"
         android:elevation="2dp"
         android:layout_marginTop="16dp" />
 
