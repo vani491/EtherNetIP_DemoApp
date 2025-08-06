@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:layout_height="match_parent">
+
+    <!-- IP Address Display -->
+    <TextView
+        android:id="@+id/txtIpAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IP appears here"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray"
+        android:padding="10dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/startTCPConnection"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Start TCP"
+            android:backgroundTint="#4CAF50"
+            />
+
+
+        <Button
+            android:id="@+id/stopTCPConnection"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="Stop TCP"
+            android:backgroundTint="#E91E63"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/txtSlaveInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Slave Info will be shown here"
+            android:textSize="14sp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textStyle="normal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Input Sensor Data: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvInputAssemblySensorData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:background="#F3F2F2"
+        android:layout_marginTop="5dp"
+        android:textColor="#989898"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Received Data From Master"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/txtCommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F3F2F2"
+        android:layout_marginTop="5dp"
+        android:textColor="#989898"
+        android:textSize="16sp"
+        android:padding="5dp"
+        />
+
+
+
+</LinearLayout>

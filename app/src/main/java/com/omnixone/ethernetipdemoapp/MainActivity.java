@@ -226,6 +226,9 @@ public class MainActivity extends AppCompatActivity implements CppDataListener {
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(sensorEventListener);
+        if (isAccelerometerRunning) {
+            sensorManager.unregisterListener(sensorEventListener);
+            isAccelerometerRunning = false;
+        }
     }
 }

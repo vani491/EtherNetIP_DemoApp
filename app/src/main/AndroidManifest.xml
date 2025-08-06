@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +20,9 @@
         android:theme="@style/Theme.EtherNetIPDemoApp"
         tools:replace="android:theme"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ModbusActivity"/>
+
     </application>
 
 </manifest>
