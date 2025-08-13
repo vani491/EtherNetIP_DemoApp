@@ -21,10 +21,10 @@ import com.omnixone.modbuslibrary.slave.ModbusSlaveFactory;
 
 import java.net.InetAddress;
 
-public class ModbusActivity extends AppCompatActivity {
+public class ModbusTCPActivity extends AppCompatActivity {
 
     Button startTCPConnection, stopTCPConnection;
-    TextView txtIPAddress, txtSlaveInfo, txtCommand;
+    TextView txtIPAddress, txtSlaveInfo, txtCommand, txtCommandOne, txtCommandTwo;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private boolean isAccelerometerRunning = false;
@@ -32,6 +32,8 @@ public class ModbusActivity extends AppCompatActivity {
     private SimpleRegister[] accelRegisters = new SimpleRegister[6]; // 0-5 for x/y/z
 
     private ObservableRegister commandRegister; // for data written from Simply Modbus
+    private ObservableRegister commandOneRegister; // for data written from Simply Modbus
+    private ObservableRegister commandTwoRegister; // for data written from Simply Modbus
 
 
     private ModbusSlave slave;
@@ -39,6 +41,10 @@ public class ModbusActivity extends AppCompatActivity {
     private int slaveUnitId = 0;
 
     TextView tvInputAssemblySensorData;
+
+    private int lastCommandValue = -1;
+    private int lastCommandValueOne = -1;
+    private int lastCommandValueTwo = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,8 @@ public class ModbusActivity extends AppCompatActivity {
         tvInputAssemblySensorData = findViewById(R.id.tvInputAssemblySensorData);
         txtSlaveInfo = findViewById(R.id.txtSlaveInfo);
         txtCommand = findViewById(R.id.txtCommand);
+        txtCommandOne = findViewById(R.id.txtCommandOne);
+        txtCommandTwo = findViewById(R.id.txtCommandTwo);
 
         String ipAddress = NetworkUtils.getWlan0IpAddress();
 
@@ -164,21 +172,26 @@ public class ModbusActivity extends AppCompatActivity {
 
             // Add one extra register at address 6 for receiving command from master
             commandRegister = new ObservableRegister(0);
-            commandRegister.setOnValueChangedListener(new ObservableRegister.OnValueChangedListener() {
+            commandOneRegister = new ObservableRegister(0);
+            commandTwoRegister = new ObservableRegister(0);
+
+          /*  commandRegister.setOnValueChangedListener(new ObservableRegister.OnValueChangedListener() {
                 @Override
                 public void onValueChanged(int newValue) {
                     runOnUiThread(() -> {
                         txtCommand.setText("Received from Master: " + newValue);
+                        Log.d("SHIVANI", "Received from Master: " + newValue);
                     });
                 }
-            });
+            });*/
             spi.addRegister(commandRegister);
-
+            spi.addRegister(commandOneRegister);
+            spi.addRegister(commandTwoRegister);
 
             slave.addProcessImage(unitId, spi);
             slave.open();
+            startCommandPolling();
             updateSlaveStatusUI(true);
-
             Log.d("MODBUS", "Modbus TCP Slave started on port " + port);
 
         } catch (Exception e) {
@@ -253,6 +266,50 @@ public class ModbusActivity extends AppCompatActivity {
         int high = (intBits >> 16) & 0xFFFF;
         int low = intBits & 0xFFFF;
         return new int[]{high, low};
+    }
+
+
+    private void startCommandPolling() {
+        new Thread(() -> {
+            while (slave != null) {
+                try {
+                    int currentValue = commandRegister.getValue();
+                    if (currentValue != lastCommandValue) {
+                        lastCommandValue = currentValue;
+
+                        runOnUiThread(() -> {
+                            txtCommand.setText("" + currentValue);
+                            Log.d("SHIVANI", "Received from One : " + currentValue);
+                        });
+                    }
+
+                    int currentValueOne = commandOneRegister.getValue();
+                    if (currentValueOne != lastCommandValueOne) {
+                        lastCommandValueOne = currentValueOne;
+
+                        runOnUiThread(() -> {
+                            txtCommandOne.setText("" + currentValueOne);
+                            Log.d("SHIVANI", "Received from Two: " + currentValueOne);
+                        });
+                    }
+
+                    int currentValueTwo = commandTwoRegister.getValue();
+                    if (currentValueTwo != lastCommandValueTwo) {
+                        lastCommandValueTwo = currentValueTwo;
+
+                        runOnUiThread(() -> {
+                            txtCommandTwo.setText("" + currentValueTwo);
+                            Log.d("SHIVANI", "Received from Three: " + currentValueTwo);
+                        });
+                    }
+
+                    Thread.sleep(500); // Check every 500ms
+                } catch (Exception e) {
+                    Log.e("SHIVANI", "Polling error", e);
+                    break;
+                }
+            }
+        }).start();
     }
 
 

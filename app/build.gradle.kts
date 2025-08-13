@@ -50,4 +50,6 @@ dependencies {
 
     implementation (files("libs/ethernetiplibrary-debug.aar"))
     implementation("org.slf4j:slf4j-android:1.7.30")
+
+    implementation(libs.usbserial.android)
 }

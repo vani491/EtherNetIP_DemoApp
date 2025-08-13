@@ -19,7 +19,15 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Modbus"
+        android:text="Modbus TCP"
+        />
+
+    <Button
+        android:id="@+id/ModbusRTU"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Modbus RTU"
         />
 
 </LinearLayout>

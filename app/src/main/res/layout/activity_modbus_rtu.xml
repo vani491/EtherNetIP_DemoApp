@@ -22,31 +22,58 @@
         android:elevation="4dp"
         android:layout_marginBottom="16dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#E4E4E4"
+        android:padding="10dp"
+        >
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seral Port"
+            />
+
+
+        <ProgressBar
+            android:id="@+id/progressPorts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <Spinner
+            android:id="@+id/spinnerPorts"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         >
         <Button
-            android:id="@+id/startTCPConnection"
+            android:id="@+id/startRTUConnection"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="Start TCP"
+            android:text="Start RTU"
             android:backgroundTint="#4CAF50"
             />
 
 
         <Button
-            android:id="@+id/stopTCPConnection"
+            android:id="@+id/stopRTUConnection"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:text="Stop TCP"
+            android:text="Stop RTU"
             android:backgroundTint="#E91E63"
             />
     </LinearLayout>

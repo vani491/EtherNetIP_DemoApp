@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button ethernetIP, Modbus;
+    Button ethernetIP, Modbus, ModbusRTU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ethernetIP =  findViewById(R.id.ethernetIP);
         Modbus =  findViewById(R.id.Modbus);
+        ModbusRTU =  findViewById(R.id.ModbusRTU);
 
         ethernetIP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +34,17 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent modbusActivity = new Intent(HomeActivity.this, ModbusActivity.class);
+                Intent modbusActivity = new Intent(HomeActivity.this, ModbusTCPActivity.class);
+                startActivity(modbusActivity);
+
+
+            }
+        });
+ ModbusRTU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent modbusActivity = new Intent(HomeActivity.this, ModbusSerialActivity.class);
                 startActivity(modbusActivity);
 
 
